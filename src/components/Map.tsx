@@ -1,13 +1,7 @@
 "use client";
 
-import L from "leaflet";
-import {
-	MapContainer,
-	Marker,
-	Popup,
-	TileLayer,
-} from "react-leaflet";
-import MarkerIcon from "leaflet/dist/images/marker-icon.png";
+import { MapContainer, TileLayer } from "react-leaflet";
+import { MapDrawControls } from "./MapDrawControls";
 
 const Map = () => {
 	return (
@@ -21,7 +15,7 @@ const Map = () => {
 				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 			/>
-			<Marker
+			{/* <Marker
 				icon={L.icon({
 					iconUrl: MarkerIcon.src,
 					iconRetinaUrl: MarkerIcon.src,
@@ -34,7 +28,8 @@ const Map = () => {
 				<Popup>
 					A pretty CSS3 popup. <br /> Easily customizable.
 				</Popup>
-			</Marker>
+			</Marker> */}
+			<MapDrawControls />
 		</MapContainer>
 	);
 };
