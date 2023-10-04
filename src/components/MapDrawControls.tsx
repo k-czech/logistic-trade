@@ -16,6 +16,9 @@ export const MapDrawControls = () => {
 
 	const onDeleted = (e: EditControlProps["onDeleted"]) => {
 		console.log(e, "deleted");
+		e.layers.eachLayer(function (layer) {
+			console.log(layer.getLatLngs(), "deleted-latlngs");
+		});
 	};
 
 	return (
@@ -40,7 +43,9 @@ export const MapDrawControls = () => {
 								"<strong>Oh snap!<strong> you can't draw that!",
 						},
 						shapeOptions: {
-							color: "#bada55",
+							color: "#fef08a",
+							fillColor: "#ca8a04",
+							fillOpacity: 0.5,
 						},
 					},
 				}}
