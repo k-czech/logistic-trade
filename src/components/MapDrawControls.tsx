@@ -16,9 +16,10 @@ export const MapDrawControls = () => {
 
 	const onDeleted = (e: EditControlProps["onDeleted"]) => {
 		console.log(e, "deleted");
-		e.layers.eachLayer(function (layer) {
-			console.log(layer.getLatLngs(), "deleted-latlngs");
-		});
+	};
+
+	const onDrawStop = (e: EditControlProps["onDrawStop"]) => {
+		console.log(e, "drawStop");
 	};
 
 	return (
@@ -26,6 +27,7 @@ export const MapDrawControls = () => {
 			<EditControl
 				position="bottomright"
 				onCreated={onCreated}
+				onDrawStop={onDrawStop}
 				onDeleted={onDeleted}
 				draw={{
 					polyline: {
@@ -38,15 +40,16 @@ export const MapDrawControls = () => {
 						allowIntersection: false,
 						showArea: true,
 						drawError: {
-							color: "#e1e100",
+							color: "#e11d48",
 							message:
 								"<strong>Oh snap!<strong> you can't draw that!",
 						},
 						shapeOptions: {
-							color: "#fef08a",
-							fillColor: "#ca8a04",
-							fillOpacity: 0.5,
+							color: "#f43f5e",
+							fillColor: "#be123c",
+							fillOpacity: 0.3,
 						},
+						tooltip: "Tooltip for Polygon",
 					},
 				}}
 			/>
