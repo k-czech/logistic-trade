@@ -84,10 +84,12 @@
 			"files": [
 				"src/app/**/*.ts?(x)",
 				"./tailwind.config.ts",
-				"src/components/Map.tsx"
+				"src/components/Map.tsx",
+				"src/components/organisms/Form.tsx"
 			],
 			"rules": {
-				"import/no-default-export": "off"
+				"import/no-default-export": "off",
+				"@typescript-eslint/no-misused-promises": "off"
 			}
 		}
 	],

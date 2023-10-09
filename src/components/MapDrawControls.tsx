@@ -48,8 +48,8 @@ export const MapDrawControls = () => {
 							color: "#f43f5e",
 							fillColor: "#be123c",
 							fillOpacity: 0.3,
+							weight: 8,
 						},
-						tooltip: "Tooltip for Polygon",
 					},
 				}}
 			/>
