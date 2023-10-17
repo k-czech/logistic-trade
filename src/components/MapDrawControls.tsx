@@ -1,6 +1,7 @@
 "use client";
 import "leaflet-draw";
 import "leaflet-draw/dist/leaflet.draw.css";
+import { useCallback, useEffect, useState } from "react";
 import { FeatureGroup } from "react-leaflet";
 import {
 	EditControl,
@@ -8,32 +9,55 @@ import {
 } from "react-leaflet-draw";
 
 export const MapDrawControls = () => {
+	const [drawStart, setDrawStart] = useState(false);
 	const onCreated = (e: EditControlProps["onCreated"]) => {
 		console.log(e, "created");
 		console.log("Geojson", e.layer.toGeoJSON());
-		console.log("coords", e.layer.getLatLngs());
+		e.layer.bindTooltip("I am a tooltip");
+		setDrawStart(false);
 	};
 
 	const onDeleted = (e: EditControlProps["onDeleted"]) => {
 		console.log(e, "deleted");
 	};
 
-	const onDrawStop = (e: EditControlProps["onDrawStop"]) => {
-		console.log(e, "drawStop");
+	const onEdited = (e: EditControlProps["onEdited"]) => {
+		console.log(e, "edited");
 	};
+
+	const onDrawStart = (e: EditControlProps["onDrawStart"]) => {
+		console.log(e, "draw start");
+	};
+
+	const generateRandomColor = useCallback(() => {
+		const maxVal = 0xffffff;
+		let randomNumber = Math.random() * maxVal;
+		randomNumber = Math.floor(randomNumber);
+		randomNumber = randomNumber;
+		const randColor = randomNumber.toString(16).substring(0, 6);
+		return `#${randColor.toUpperCase()}`;
+	}, [drawStart]);
+
+	useEffect(() => {
+		if (!drawStart) {
+			setDrawStart(true);
+		}
+	}, [drawStart]);
 
 	return (
 		<FeatureGroup>
 			<EditControl
 				position="bottomright"
 				onCreated={onCreated}
-				onDrawStop={onDrawStop}
 				onDeleted={onDeleted}
+				onEdited={onEdited}
+				onDrawStart={onDrawStart}
 				draw={{
 					polyline: {
+						allowIntersection: false,
 						shapeOptions: {
-							color: "#16a34a",
-							weight: 8,
+							color: generateRandomColor(),
+							weight: 5,
 						},
 					},
 					polygon: {
@@ -45,8 +69,8 @@ export const MapDrawControls = () => {
 								"<strong>Oh snap!<strong> you can't draw that!",
 						},
 						shapeOptions: {
-							color: "#f43f5e",
-							fillColor: "#be123c",
+							color: generateRandomColor(),
+							fillColor: generateRandomColor(),
 							fillOpacity: 0.3,
 							weight: 8,
 						},

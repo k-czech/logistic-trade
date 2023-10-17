@@ -1,22 +1,28 @@
 "use client";
 
+import { type Map } from "leaflet";
+import { useRef } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
-import { MapDrawControls } from "./MapDrawControls";
+import { Geoman } from "./Geoman";
 
-const Map = () => {
+const MapComponent = () => {
+	const mapRef = useRef<Map | null>(null);
+	const zoom = 10;
+
 	return (
 		<MapContainer
+			ref={(ref) => (mapRef.current = ref)}
 			center={[52.409538, 16.931992]}
-			zoom={10}
+			zoom={zoom}
 			className="h-screen w-full"
 		>
 			<TileLayer
-				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 			/>
-			<MapDrawControls />
+			<Geoman />
 		</MapContainer>
 	);
 };
 
-export default Map;
+export default MapComponent;
