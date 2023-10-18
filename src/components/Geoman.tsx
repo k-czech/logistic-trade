@@ -1,3 +1,5 @@
+"use client";
+
 import { useMap } from "react-leaflet";
 
 import "@geoman-io/leaflet-geoman-free";
@@ -22,6 +24,10 @@ export function Geoman() {
 		setDrawStart(false);
 	});
 
+	map.on("pm:textblur", (e) => {
+		console.log(e, "text blur");
+	});
+
 	const generateRandomColor = useCallback(() => {
 		const maxVal = 0xffffff;
 		let randomNumber = Math.random() * maxVal;
@@ -29,7 +35,7 @@ export function Geoman() {
 		randomNumber = randomNumber;
 		const randColor = randomNumber.toString(16).substring(0, 6);
 		return `#${randColor.toUpperCase()}`;
-	}, []);
+	}, [drawStart]);
 
 	map.pm.setGlobalOptions({
 		snapDistance: 15,

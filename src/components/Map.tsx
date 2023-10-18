@@ -3,7 +3,9 @@
 import { type Map } from "leaflet";
 import { useRef } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
+
 import { Geoman } from "./Geoman";
+import { Sidebar } from "./Sidebar";
 
 const MapComponent = () => {
 	const mapRef = useRef<Map | null>(null);
@@ -21,6 +23,7 @@ const MapComponent = () => {
 				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 			/>
 			<Geoman />
+			<Sidebar />
 		</MapContainer>
 	);
 };
