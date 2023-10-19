@@ -68,11 +68,11 @@ export function Sidebar() {
 						context.map.pm.enableDraw("Marker", {
 							...options,
 							finishOn: "click",
-							continueDrawing: false,
+							continueDrawing: true,
 						});
 					}}
 				>
-					Przesyłka
+					Zlecenie
 				</Button>
 			</div>
 		</div>
